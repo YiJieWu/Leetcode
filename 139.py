@@ -116,3 +116,12 @@ class Solution(object):
         """
         dp=[None]*(len(s)+1)
         return self.helper(s,wordDict,0,dp)
+
+
+'''
+The bottom up dp version of this problem is actually hard, the key of the elegant bottom up
+version of this probelm is correctly defined what dp[i] means. Originally, I was thinking dp[i]
+will denote the suarray ending at index i, just like the longest increasing subsequence problem,
+then I realize it's actually hard, the better way is to define dp[i] as the len of subarray of
+length i, I actually want to REDO this question later!!
+'''
