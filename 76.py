@@ -41,4 +41,48 @@ class Solution(object):
             return s[i:j+1]
         else:
             return ""
-                    
+
+
+
+
+
+
+#second try
+from collections import Counter
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        if len(s)==0:
+            return ""
+        
+        remaining=len(t)
+        c=Counter(t)
+        start=end=0
+        min_index=[0,len(s)-1]
+        for end,char in enumerate(s):
+            if char in c:
+                if c[char]>0:
+                    remaining-=1
+                c[char]-=1
+                
+            if remaining==0:
+                while start<end:
+                    if s[start] not in c:
+                        start+=1
+                    else:
+                        if c[s[start]]<0:
+                            c[s[start]]+=1
+                            start+=1
+                        else:
+                            break
+                if end-start<min_index[1]-min_index[0]:
+                    min_index[0]=start
+                    min_index[1]=end
+        if remaining!=0:
+            return ""
+        else:
+            return s[min_index[0]:min_index[1]+1]                    
