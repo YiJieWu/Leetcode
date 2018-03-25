@@ -1,3 +1,32 @@
+# The brutal force soluction
+
+
+class Solution:
+    """
+    @param m: An integer m denotes the size of a backpack
+    @param A: Given n items with size A[i]
+    @param V: Given n items with value V[i]
+    @return: The maximum value
+    """
+    def helper(self,m,A,V,start):
+        res=0
+        for index in range(start,len(A)):
+            if m-A[index]>=0:
+                res=max(res,V[index]+self.helper(m-A[index],A,V,index+1))
+        return res
+    def backPackII(self, m, A, V):
+        # write your code here
+        return self.helper(m,A,V,0)
+
+
+
+
+
+
+
+
+
+
 class Solution:
     """
     @param: m: An integer m denotes the size of a backpack
