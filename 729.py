@@ -37,3 +37,44 @@ class MyCalendar:
                     self.l.insert(pos,(start,end))
                     return True
             return False
+
+
+
+
+
+
+
+# second approach, this is really a cool approah to handle edge cases
+
+
+class Node:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+        self.left = self.right = None
+
+    
+
+class MyCalendar(object):
+    def __init__(self):
+        self.root = None
+    
+    def insert(self,root ,node):
+        if node.start >= root.end:
+            if  root.right==None:
+                root.right = node
+                return True
+            return self.insert(root.right,node)
+        elif node.end <= root.start:
+            if  root.left==None:
+                root.left = node
+                return True
+            return self.insert(root.left,node)
+        else:
+            return False
+
+    def book(self, start, end):
+        if self.root is None:
+            self.root = Node(start, end)
+            return True
+        return self.insert(self.root,Node(start, end))
